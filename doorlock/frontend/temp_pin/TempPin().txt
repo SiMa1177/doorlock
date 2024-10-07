@@ -1,0 +1,6 @@
+struct TempPin {
+    String pin;
+    unsigned long expiration; // Time in milliseconds when the PIN expires
+};
+
+TempPin tempPins[10]; // Array to hold up to 10 temporary PINs

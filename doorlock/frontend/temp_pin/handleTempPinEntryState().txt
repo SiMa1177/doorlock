@@ -1,0 +1,23 @@
+void handleTempPinEntryState() {
+    char key = keypad.getKey(); // Get key from keypad
+    if (key) {
+        if (key == 'P') { // Assuming 'P' is the key to validate PIN
+            // Check if entered PIN matches any temporary PIN
+            for (int i = 0; i < 10; i++) {
+                if (tempPins[i].pin == buffer && millis() < tempPins[i].expiration) {
+                    Serial.println("Temporary PIN accepted, unlocking.");
+                    setState(UNLOCKED); // Function to change state
+                    return;
+                }
+            }
+            Serial.println("Invalid or expired temporary PIN.");
+            setState(INVALID_PIN); // Function to handle invalid state
+        } else if (key == '#') { // '#' key to cancel or lock
+            setState(LOCKED);
+        } else {
+            buffer += key; // Append digit to buffer
+        }
+        updateDisplay(); // Update display after every input
+        resetTimeout(); // Reset any timeout (implement this based on your logic)
+    }
+}
