@@ -1,0 +1,15 @@
+void updateDisplay() {
+    lcd.clear(); // Clear the display
+    if (state == LOCKED) {
+        lcd.print(" Access Denied ");
+        lcd.setCursor(0, 1);
+        lcd.print("Try Again Later ");
+    } else if (state == TEMP_PIN_ENTRY) {
+        lcd.print(" Enter Temp PIN ");
+        lcd.setCursor(0, 1);
+        for (int i = 0; i < buffer.length(); i++) {
+            lcd.print("*"); // Show asterisks for entered digits
+        }
+    }
+    // Add additional state conditions as necessary
+}

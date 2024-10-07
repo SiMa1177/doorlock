@@ -1,0 +1,12 @@
+void addTempPin(String pin) {
+    for (int i = 0; i < 10; i++) {
+        if (tempPins[i].pin == "") { // Find an empty spot
+            tempPins[i].pin = pin; // Store the PIN
+            tempPins[i].expiration = millis() + 86400000; // Set expiration for 24 hours
+            Serial.print("Temporary PIN added: ");
+            Serial.println(pin);
+            return;
+        }
+    }
+    Serial.println("No space for temporary PIN.");
+}

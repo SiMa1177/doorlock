@@ -1,0 +1,15 @@
+void loop() {
+  lcd.setCursor(0, 1);
+  while (lcd._i2cio.yield_request()) jm_Scheduler::yield();
+  
+  if (Serial.available() > 0) {
+    byte incomingByte = Serial.read();
+    if (incomingByte == '\n') {
+      handleSerialInput();
+    } else {
+      serial_unfinished_line += (char)incomingByte;
+    }
+  }
+  
+  handleState();
+}

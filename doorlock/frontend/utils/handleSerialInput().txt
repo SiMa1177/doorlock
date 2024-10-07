@@ -1,0 +1,12 @@
+void handleSerialInput() {
+  if (serial_unfinished_line == "PING;") {
+    Serial.println("PONG;");
+  } else if (serial_unfinished_line.startsWith("TEMP_PIN,")) {
+    addTempPin(serial_unfinished_line.substring(9)); // Add temporary PIN from the command
+  } else if (serial_unfinished_line.startsWith("STATUS,")) {
+    handleStatusUpdate();
+  } else {
+    serial_buffer = serial_unfinished_line;
+  }
+  serial_unfinished_line = "";
+}

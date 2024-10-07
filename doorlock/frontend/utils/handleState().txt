@@ -1,0 +1,18 @@
+void handleState() {
+  if (state == LOCKED) {
+    handleLockedState();
+  } else if (state == PIN_ENTRY) {
+    handlePinEntryState();
+  } else if (state == WAIT_FOR_UNLOCK) {
+    handleWaitForUnlockState();
+  } else if (state == UNLOCKED || state == SEMI_LOCKED) {
+    handleUnlockedState();
+  } else if (state == INVALID_PIN) {
+    handleInvalidPinState();
+  } else if (state == TEMP_PIN_ENTRY) {
+    handleTempPinEntryState();
+  } else {
+    Serial.println("State not implemented");
+    delay(1000);
+  }
+}
